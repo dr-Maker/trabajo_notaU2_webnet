@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Tools;
 
 namespace Models
 {
@@ -23,6 +24,30 @@ namespace Models
 
         public int estado { get; set; }
 
+        public string FechaInTxt
+        {
+            get
+            {
+                string dia = Rutinas.right(fecha.Day.ToString(), 2);
+                string mes = Rutinas.right(fecha.Month.ToString(), 2);
+                string anno = Rutinas.right(fecha.Year.ToString(), 4);
+
+                return dia + "-" + mes + "-" + anno;
+            }
+        }
+
+        public string FechaOutTxt
+        {
+            get
+            {
+                string dia = Rutinas.right(fechaout.Day.ToString(), 2);
+                string mes = Rutinas.right(fechaout.Month.ToString(), 2);
+                string anno = Rutinas.right(fechaout.Year.ToString(), 4);
+
+                return dia + "-" + mes + "-" + anno;
+            }
+        }
+
         //Habitación
 
         public int numhab { get; set; }
@@ -35,7 +60,7 @@ namespace Models
         {
             get
             {
-                return "Hab. #" + numhab +" - $" + valordia;
+                return "Hab. #" + numhab +" - $ " + valordia.ToString("N0");
             }
         }
 

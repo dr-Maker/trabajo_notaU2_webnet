@@ -8,10 +8,11 @@ using System.Web.Mvc;
 
 namespace Controllers
 {
-    public class ReservaController : Controller
+    public class PagoController : Controller
     {
-        ReservaManager man = new ReservaManager();
+        PagoManager man = new PagoManager();
 
+        // GET: Pago
         public ActionResult Index()
         {
             return View(man.Listar());
@@ -19,38 +20,34 @@ namespace Controllers
 
         public ActionResult Crear()
         {
-            ViewBag.Habitaciones = man.Habitaciones();
-            ViewBag.Clientes = man.Clientes();
+            ViewBag.Reserva = man.Reservas();
             return View();
         }
 
         [HttpPost]
-        public ActionResult Crear(ReservaModel obj)
+        public ActionResult Crear(PagoModel obj)
         {
-            ViewBag.Habitaciones = man.Habitaciones();
-            ViewBag.Clientes = man.Clientes();
+            ViewBag.Reserva = man.Reservas();
             man.Crear(obj);
             return RedirectToAction("Index");
         }
 
-
         public ActionResult Editar(int id)
         {
-            ViewBag.Habitaciones = man.Habitaciones();
-            ViewBag.Clientes = man.Clientes();
-            var obj = man.Buscar(id); 
+            ViewBag.Reserva = man.Reservas();
+            var obj = man.Buscar(id);
             return View(obj);
         }
 
         [HttpPost]
-        public ActionResult Editar(int id, ReservaModel obj)
+        public ActionResult Editar(int id, PagoModel obj)
         {
-            ViewBag.Habitaciones = man.Habitaciones();
-            ViewBag.Clientes = man.Clientes();
+            ViewBag.Reserva = man.Reservas();
             obj.idreserva = id;
             man.Editar(obj);
             return RedirectToAction("Index");
         }
+
 
         public ActionResult Borrar(int id)
         {
@@ -63,16 +60,6 @@ namespace Controllers
         {
 
             man.Borrar(id);
-            return RedirectToAction("Index");
-        }
-
-
-
-        //*****************************
-        public ActionResult DropVistas()
-        {
-            ViewBag.Habitaciones = man.Habitaciones();
-            ViewBag.Clientes = man.Clientes();         
             return RedirectToAction("Index");
         }
     }

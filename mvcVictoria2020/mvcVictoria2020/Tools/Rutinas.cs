@@ -18,5 +18,14 @@ namespace Tools
             return cadena.Substring(cadena.Length - largo);
         }
 
+
+        public static string formatoMonto(int monto)
+        {
+            string respuesta;
+
+            respuesta = monto.ToString("###.###.###.###");
+
+            return respuesta;
+        }
     }
 }

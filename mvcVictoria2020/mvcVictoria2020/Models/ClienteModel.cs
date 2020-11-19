@@ -15,7 +15,7 @@ namespace Models
 
         public string email { get; set; }
 
-        public long telefono { get; set; }
+        public int telefono { get; set; }
 
         public string NombreCliente
         {

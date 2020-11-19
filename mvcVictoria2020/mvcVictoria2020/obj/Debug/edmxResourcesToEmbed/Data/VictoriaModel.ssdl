@@ -41,7 +41,7 @@
     <Property Name="total" Type="int" Nullable="false" />
     <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK__pago__idreserva__52593CB8">
+  <Association Name="FK__pago__idreserva__1A9EF37A">
     <End Role="reserva" Type="Self.reserva" Multiplicity="1" />
     <End Role="pago" Type="Self.pago" Multiplicity="*" />
     <ReferentialConstraint>
@@ -53,7 +53,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__reserva__idclien__4D94879B">
+  <Association Name="FK__reserva__idclien__15DA3E5D">
     <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
     <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
     <ReferentialConstraint>
@@ -65,7 +65,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__reserva__idhabit__4CA06362">
+  <Association Name="FK__reserva__idhabit__14E61A24">
     <End Role="habitacion" Type="Self.habitacion" Multiplicity="1" />
     <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
     <ReferentialConstraint>
@@ -82,15 +82,15 @@
     <EntitySet Name="habitacion" EntityType="Self.habitacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="pago" EntityType="Self.pago" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="reserva" EntityType="Self.reserva" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__pago__idreserva__52593CB8" Association="Self.FK__pago__idreserva__52593CB8">
+    <AssociationSet Name="FK__pago__idreserva__1A9EF37A" Association="Self.FK__pago__idreserva__1A9EF37A">
       <End Role="reserva" EntitySet="reserva" />
       <End Role="pago" EntitySet="pago" />
     </AssociationSet>
-    <AssociationSet Name="FK__reserva__idclien__4D94879B" Association="Self.FK__reserva__idclien__4D94879B">
+    <AssociationSet Name="FK__reserva__idclien__15DA3E5D" Association="Self.FK__reserva__idclien__15DA3E5D">
       <End Role="cliente" EntitySet="cliente" />
       <End Role="reserva" EntitySet="reserva" />
     </AssociationSet>
-    <AssociationSet Name="FK__reserva__idhabit__4CA06362" Association="Self.FK__reserva__idhabit__4CA06362">
+    <AssociationSet Name="FK__reserva__idhabit__14E61A24" Association="Self.FK__reserva__idhabit__14E61A24">
       <End Role="habitacion" EntitySet="habitacion" />
       <End Role="reserva" EntitySet="reserva" />
     </AssociationSet>

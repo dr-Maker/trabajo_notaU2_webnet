@@ -108,12 +108,24 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
+    <Content Include="_web\css\base.css" />
+    <Content Include="_web\css\bootstrap.css" />
+    <Content Include="_web\img\add.png" />
+    <Content Include="_web\img\borrar.png" />
+    <Content Include="_web\img\editar.png" />
+    <Content Include="_web\img\nuevo.png" />
+    <Content Include="_web\js\bootstrap.js" />
+    <Content Include="_web\js\jquery-3.3.1.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BAL\BaseManager.cs" />
+    <Compile Include="BAL\ClienteManager.cs" />
     <Compile Include="BAL\ListasManager.cs" />
+    <Compile Include="BAL\PagoManager.cs" />
     <Compile Include="BAL\ReservaManager.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\ReservaController.cs" />
     <Compile Include="Data\cliente.cs">
       <DependentUpon>VictoriaModel.tt</DependentUpon>
@@ -166,6 +178,17 @@
     <Content Include="Views\Shared\_Plantilla.cshtml" />
     <Content Include="Views\Reserva\Index.cshtml" />
     <Content Include="Views\Reserva\DropVistas.cshtml" />
+    <Content Include="Views\Reserva\Crear.cshtml" />
+    <Content Include="Views\Reserva\Editar.cshtml" />
+    <Content Include="Views\Reserva\Borrar.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Crear.cshtml" />
+    <Content Include="Views\Cliente\Editar.cshtml" />
+    <Content Include="Views\Cliente\Borrar.cshtml" />
+    <Content Include="Views\Pago\Index.cshtml" />
+    <Content Include="Views\Pago\Crear.cshtml" />
+    <Content Include="Views\Pago\Editar.cshtml" />
+    <Content Include="Views\Pago\Borrar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

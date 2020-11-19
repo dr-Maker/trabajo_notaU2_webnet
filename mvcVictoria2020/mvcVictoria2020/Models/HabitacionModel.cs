@@ -19,7 +19,7 @@ namespace Models
         {
             get
             {
-                return "Hab. #" + numhab + " - $" + valordia;
+                return "Hab. #" + numhab + " - $" + valordia.ToString("N0");
             }
         }
 

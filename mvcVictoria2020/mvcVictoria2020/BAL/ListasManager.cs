@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Tools;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,10 @@ namespace BAL
 
         public List<ListasModel> Habitaciones()
         {
-            var lista = (from t in db.habitacion
+            var lista = (from t in db.habitacion     
                          select new ListasModel
                          {
-                             texto = "Hab. #" + t.numhab.ToString() + " - $" + t.valordia.ToString(),
+                             texto = "Hab. #" + t.numhab.ToString() + " - $" + t.valordia,
                              valor = t.idhabitacion.ToString()
                          }).ToList();
             return lista;
@@ -34,5 +35,23 @@ namespace BAL
             return lista;
         }
 
+
+
+
+        public List<ListasModel> Reservas()
+        {
+            var lista = (from r in db.reserva
+                         join h in db.habitacion on r.idhabitacion equals h.idhabitacion
+                         join c in db.cliente on r.idcliente equals c.idcliente
+                         where r.estado == 0
+                         select new ListasModel
+                         {
+                             texto = "habitación # " + h.numhab + " Cliente " + c.nombres + " " + c.apellidos + " Total a pagar $ " + r.total,
+                             valor = r.idreserva.ToString()
+                         }).ToList();
+            return lista;
+
+
+        }
     }
 }

@@ -1,0 +1,41 @@
+﻿@model List<Models.ClienteModel>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.TitlePag = "Lista de Clientes";
+    Layout = "~/Views/Shared/_Plantilla.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Nuevo Cliente", "Crear")
+</p>
+
+<table class="table table-bordered table-striped text-center">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Accion</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.NombreCliente</td>
+                <td>@item.email</td>
+                <td>@item.telefono</td>
+
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.idcliente })
+                    @Html.ActionLink("Eliminar ", "Borrar", new { id = item.idcliente })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,41 @@
+﻿@model Models.PagoModel
+@{
+
+    ViewBag.Title = "Editar";
+    ViewBag.TitlePag = "Editar Pago";
+    Layout = "~/Views/Shared/_Plantilla.cshtml";
+
+    var reservas = new List<SelectListItem>();
+    reservas.Add(new SelectListItem() { Text = "Todas", Value = "" });
+    foreach (var item in ViewBag.Reserva)
+    {
+        reservas.Add(new SelectListItem() { Text = item.texto, Value = item.valor });
+    }
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+
+    <div class="form-group">
+        <label>Cliente:</label>
+        @Html.DropDownListFor( model => model.idreserva,
+       (List<SelectListItem>)reservas,
+        new { @class="form-control", @required = true })
+    </div>
+
+
+    <div class="form-group">
+        <label>Monto pago: </label>
+        @Html.TextBoxFor( model => model.montopago,
+       new  { @class="form-control", @required=true, type = "number", min="0"})
+    </div>
+
+
+    <div class="form-group">
+        <input class="btn btn-info" type="submit" value="Grabar" />
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Volver", "Index")
+</p>

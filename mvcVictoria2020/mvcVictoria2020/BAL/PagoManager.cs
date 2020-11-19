@@ -8,17 +8,20 @@ using System.Web;
 
 namespace BAL
 {
-    public class ReservaManager
+    public class PagoManager
     {
         BaseManager db = new BaseManager();
 
-        public List<ReservaModel> Listar()
+        public List<PagoModel> Listar()
         {
             var lista = (from r in db.reserva
                          join h in db.habitacion on r.idhabitacion equals h.idhabitacion
                          join c in db.cliente on r.idcliente equals c.idcliente
-                         select new ReservaModel
+                         join p in db.pago on r.idreserva equals p.idreserva
+                         select new PagoModel
                          {
+                             idpago = p.idpago,
+                             montopago = p.montopago,
                              idreserva = r.idreserva,
                              idhabitacion = r.idhabitacion,
                              idcliente = r.idcliente,
@@ -40,14 +43,17 @@ namespace BAL
             return lista;
         }
 
-        public ReservaModel Buscar(int id)
+        public PagoModel Buscar(int id)
         {
             var obj = (from r in db.reserva
                          join h in db.habitacion on r.idhabitacion equals h.idhabitacion
                          join c in db.cliente on r.idcliente equals c.idcliente
-                         where r.idreserva == id
-                         select new ReservaModel
+                         join p in db.pago on r.idreserva equals p.idreserva
+                         where p.idpago == id
+                         select new PagoModel
                          {
+                             idpago = p.idpago,
+                             montopago = p.montopago,
                              idreserva = r.idreserva,
                              idhabitacion = r.idhabitacion,
                              idcliente = r.idcliente,
@@ -69,51 +75,40 @@ namespace BAL
             return obj;
         }
 
-
-        public int Crear(ReservaModel obj)
-        {
-            { 
-                try
-                {
-                    var entidad = new reserva();
-                    entidad.idhabitacion = obj.idhabitacion;
-                    entidad.idcliente = obj.idcliente;
-                    entidad.fecha = obj.fecha;
-                    entidad.numdias = generarNumdias(obj.fecha, obj.fechaout);
-                    entidad.fechaout = obj.fechaout;
-                    var habitacion = obtHabitacion(obj.idhabitacion);
-                    entidad.total = generarTotal(habitacion.valordia, generarNumdias(obj.fecha, obj.fechaout));
-                    entidad.estado = 0;
-
-                    db.reserva.AddOrUpdate(entidad);
-                    db.SaveChanges();
-                    return entidad.idreserva;
-                }
-
-                catch (Exception exe)
-                {
-                    return 0;
-                }
-            }
-        }
-
-
-        public int Editar(ReservaModel obj)
+        public int Crear(PagoModel obj)
         {
             try
             {
-                var entidad = db.reserva.Find(obj.idreserva);
-                entidad.idhabitacion = obj.idhabitacion;
-                entidad.idcliente = obj.idcliente;
-                entidad.fecha = obj.fecha;
-                entidad.numdias = generarNumdias(obj.fecha, obj.fechaout);
-                entidad.fechaout = obj.fechaout;
-                var habitacion = obtHabitacion(obj.idhabitacion);
-                entidad.total = generarTotal(habitacion.valordia, generarNumdias(obj.fecha, obj.fechaout));
-                entidad.estado = 0;
-                db.reserva.AddOrUpdate(entidad);
+                var entidad = new pago();
+                entidad.idreserva = obj.idreserva;
+                entidad.montopago = obj.montopago;
+                entidad.estado = 0 ;
+                db.pago.AddOrUpdate(entidad);
                 db.SaveChanges();
-                return entidad.idreserva;
+
+                ActualizarEstadoReserva(obj.idreserva);
+
+                return entidad.idpago;
+            }
+            catch (Exception exe)
+            {
+                return 0;
+            }
+        }
+
+        public int Editar(PagoModel obj)
+        {
+            try
+            {
+                var entidad = db.pago.Find(obj.idpago);
+                entidad.idreserva = obj.idreserva;
+                entidad.montopago = obj.montopago;
+                entidad.estado = 0;
+                db.pago.AddOrUpdate(entidad);
+                db.SaveChanges();
+
+
+                return entidad.idpago;
             }
             catch (Exception exe)
             {
@@ -125,10 +120,10 @@ namespace BAL
         {
             try
             {
-                var entidad = db.reserva.Find(id);
-                db.reserva.Remove(entidad);
+                var entidad = db.pago.Find(id);
+                db.pago.Remove(entidad);
                 db.SaveChanges();
-                return entidad.idreserva;
+                return entidad.idpago;
             }
             catch (Exception exe)
             {
@@ -136,39 +131,18 @@ namespace BAL
             }
         }
 
-
-        public int generarNumdias(DateTime fechainicial, DateTime fechafinal )
+        public void ActualizarEstadoReserva(int id)
         {
-            TimeSpan tdias = fechafinal - fechainicial;
-
-            int dias = tdias.Days;
-
-            return dias;
+            var entidad = db.reserva.Find(id);
+            entidad.estado = 1;
+            db.reserva.AddOrUpdate(entidad);
+            db.SaveChanges();
         }
 
-        public int generarTotal(int valorHabitacion, int dias)
-        {
-            int total = dias * valorHabitacion;
-
-            return total;
-        }
-
-
-        public habitacion obtHabitacion(int id)
-        {
-           return db.habitacion.Find(id);
-        }
-
-        public List<ListasModel> Habitaciones()
+        public List<ListasModel> Reservas()
         {
             var man = new ListasManager();
-            return man.Habitaciones();
-        }
-
-        public List<ListasModel> Clientes()
-        {
-            var man = new ListasManager();
-            return man.Clientes();
+            return man.Reservas();
         }
     }
 }

@@ -1,23 +1,23 @@
-﻿@model List<Models.ReservaModel>
-
+﻿@model List<Models.PagoModel>
 @{
     ViewBag.Title = "Index";
-    ViewBag.TitlePag = "Lista de reservas";
-
+    ViewBag.TitlePag = "Lista Pagados";
     Layout = "~/Views/Shared/_Plantilla.cshtml";
 }
 
 <p>
-    @Html.ActionLink("Ingresar Nueva Reserva","Crear")
+    @Html.ActionLink("Realizar Nuevo Pago", "Crear")
 </p>
+
 
 <table class="table table-bordered table-striped text-center">
     <thead>
         <tr>
             <th>Fecha checkin</th>
-            <th>Num. día</th>
             <th>Fecha checkout</th>
-            <th>Costo total</th>
+            <th>Num. día</th>
+            <th>Monto Total</th>
+            <th>Monto Pagado</th>
             <th>Habitación</th>
             <th>Cliente</th>
             <th>Accion</th>
@@ -30,20 +30,19 @@
         <tr>
 
             <td>@item.FechaInTxt</td>
-            <td>@item.numdias</td>
             <td>@item.FechaOutTxt</td>
+            <td>@item.numdias</td>
             <td>$ @item.total.ToString("N0")</td>
+            <td>$ @item.montopago.ToString("N0")</td>
             <td>@item.NumValordia</td>
             <td>@item.NombreCliente</td>
             <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.idreserva })
-                @Html.ActionLink("Eliminar ", "Borrar", new { id = item.idreserva })
+                @Html.ActionLink("Editar", "Editar", new { id = item.idpago })
+                @Html.ActionLink("Eliminar ", "Borrar", new { id = item.idpago })
             </td>
 
         </tr>
         }
     </tbody>
 </table>
-
-
 

@@ -70,16 +70,17 @@ insert into reserva values(2002, 1001, getdate(), 3, getdate()+3, 0, 0);
 insert into reserva values(2005, 1002, getdate(), 5, getdate()+5, 0, 0);
 insert into reserva values(2008, 1006, getdate(), 7, getdate()+7, 0, 0);
 
-update reserva set total = numdias*h.valordia
-from reserva r
-join habitacion h on r.idhabitacion = h.idhabitacion;
-
-
 select 
 r.*,
 h.numhab, h.detalle, h.valordia,
-c.nombres, c.apellidos, c.email, c.telefono
+c.nombres, c.apellidos, c.email, c.telefono,
+p.idpago, p.montopago
 from reserva r 
 join habitacion  h    on r.idhabitacion  =  h.idhabitacion
 join cliente     c    on r.idcliente     =  c.idcliente
+join pago        p    on r.idreserva     =  p.idreserva
 
+
+select * from  pago
+select * from reserva
+select * from habitacion
