@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="net2020_victoriaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="idcliente" />
+    </Key>
+    <Property Name="idcliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="reserva" Relationship="Self.FK__reserva__idclien__4D94879B" FromRole="cliente" ToRole="reserva" />
+  </EntityType>
+  <EntityType Name="habitacion">
+    <Key>
+      <PropertyRef Name="idhabitacion" />
+    </Key>
+    <Property Name="idhabitacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numhab" Type="Int32" Nullable="false" />
+    <Property Name="detalle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="valordia" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="reserva" Relationship="Self.FK__reserva__idhabit__4CA06362" FromRole="habitacion" ToRole="reserva" />
+  </EntityType>
+  <EntityType Name="pago">
+    <Key>
+      <PropertyRef Name="idpago" />
+    </Key>
+    <Property Name="idpago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idreserva" Type="Int32" Nullable="false" />
+    <Property Name="montopago" Type="Int32" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="reserva" Relationship="Self.FK__pago__idreserva__52593CB8" FromRole="pago" ToRole="reserva" />
+  </EntityType>
+  <EntityType Name="reserva">
+    <Key>
+      <PropertyRef Name="idreserva" />
+    </Key>
+    <Property Name="idreserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idhabitacion" Type="Int32" Nullable="false" />
+    <Property Name="idcliente" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="numdias" Type="Int32" Nullable="false" />
+    <Property Name="fechaout" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="total" Type="Int32" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.FK__reserva__idclien__4D94879B" FromRole="reserva" ToRole="cliente" />
+    <NavigationProperty Name="habitacion" Relationship="Self.FK__reserva__idhabit__4CA06362" FromRole="reserva" ToRole="habitacion" />
+    <NavigationProperty Name="pago" Relationship="Self.FK__pago__idreserva__52593CB8" FromRole="reserva" ToRole="pago" />
+  </EntityType>
+  <Association Name="FK__reserva__idclien__4D94879B">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="idcliente" />
+      </Principal>
+      <Dependent Role="reserva">
+        <PropertyRef Name="idcliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__reserva__idhabit__4CA06362">
+    <End Role="habitacion" Type="Self.habitacion" Multiplicity="1" />
+    <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitacion">
+        <PropertyRef Name="idhabitacion" />
+      </Principal>
+      <Dependent Role="reserva">
+        <PropertyRef Name="idhabitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__pago__idreserva__52593CB8">
+    <End Role="reserva" Type="Self.reserva" Multiplicity="1" />
+    <End Role="pago" Type="Self.pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reserva">
+        <PropertyRef Name="idreserva" />
+      </Principal>
+      <Dependent Role="pago">
+        <PropertyRef Name="idreserva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="net2020_victoriaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cliente" EntityType="Self.cliente" />
+    <EntitySet Name="habitacion" EntityType="Self.habitacion" />
+    <EntitySet Name="pago" EntityType="Self.pago" />
+    <EntitySet Name="reserva" EntityType="Self.reserva" />
+    <AssociationSet Name="FK__reserva__idclien__4D94879B" Association="Self.FK__reserva__idclien__4D94879B">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="reserva" EntitySet="reserva" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reserva__idhabit__4CA06362" Association="Self.FK__reserva__idhabit__4CA06362">
+      <End Role="habitacion" EntitySet="habitacion" />
+      <End Role="reserva" EntitySet="reserva" />
+    </AssociationSet>
+    <AssociationSet Name="FK__pago__idreserva__52593CB8" Association="Self.FK__pago__idreserva__52593CB8">
+      <End Role="reserva" EntitySet="reserva" />
+      <End Role="pago" EntitySet="pago" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

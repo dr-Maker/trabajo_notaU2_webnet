@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="net2020_victoriaModelStoreContainer" CdmEntityContainer="net2020_victoriaEntities">
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="net2020_victoriaModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="habitacion">
+      <EntityTypeMapping TypeName="net2020_victoriaModel.habitacion">
+        <MappingFragment StoreEntitySet="habitacion">
+          <ScalarProperty Name="idhabitacion" ColumnName="idhabitacion" />
+          <ScalarProperty Name="numhab" ColumnName="numhab" />
+          <ScalarProperty Name="detalle" ColumnName="detalle" />
+          <ScalarProperty Name="valordia" ColumnName="valordia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pago">
+      <EntityTypeMapping TypeName="net2020_victoriaModel.pago">
+        <MappingFragment StoreEntitySet="pago">
+          <ScalarProperty Name="idpago" ColumnName="idpago" />
+          <ScalarProperty Name="idreserva" ColumnName="idreserva" />
+          <ScalarProperty Name="montopago" ColumnName="montopago" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reserva">
+      <EntityTypeMapping TypeName="net2020_victoriaModel.reserva">
+        <MappingFragment StoreEntitySet="reserva">
+          <ScalarProperty Name="idreserva" ColumnName="idreserva" />
+          <ScalarProperty Name="idhabitacion" ColumnName="idhabitacion" />
+          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="numdias" ColumnName="numdias" />
+          <ScalarProperty Name="fechaout" ColumnName="fechaout" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
