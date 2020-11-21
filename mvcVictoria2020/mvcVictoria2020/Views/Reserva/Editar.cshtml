@@ -1,20 +1,13 @@
 ﻿@model Models.ReservaModel
 
 @{
-
     ViewBag.Title = "Editar";
     ViewBag.TitlePag = "Editar Reserva";
     Layout = "~/Views/Shared/_Plantilla.cshtml";
 
-    var clientes = new List<SelectListItem>();
-    clientes.Add(new SelectListItem() { Text = "Todos", Value = "" });
-    foreach (var item in ViewBag.Clientes)
-    {
-        clientes.Add(new SelectListItem() { Text = item.texto, Value = item.valor });
-    }
 
     var habitaciones = new List<SelectListItem>();
-    habitaciones.Add(new SelectListItem() { Text = "Todass", Value = "" });
+    habitaciones.Add(new SelectListItem() { Text = "Todas", Value = "" });
     foreach (var item in ViewBag.Habitaciones)
     {
         habitaciones.Add(new SelectListItem() { Text = item.texto, Value = item.valor });
@@ -22,39 +15,43 @@
 }
 
 @using (Html.BeginForm(FormMethod.Post))
+
 {
+    <div class="form-group">
+        @Html.TextBoxFor(model => model.idcliente,
+     new { @class = "form-control", @readonly = true, type = "hidden" })
+    </div>
 
     <div class="form-group">
         <label>Cliente:</label>
-        @Html.DropDownListFor( model => model.idcliente,
-       (List<SelectListItem>) clientes,
-        new { @class="form-control", @required = true })
+        @Html.TextBoxFor(model => model.NombreCliente,
+     new { @class = "form-control", @readonly = true })
     </div>
 
     <div class="form-group">
         <label>Habitaciones:</label>
-        @Html.DropDownListFor( model => model.idhabitacion,
-       (List<SelectListItem>)habitaciones,
-        new { @class="form-control", @required = true })
+        @Html.DropDownListFor(model => model.idhabitacion,
+    (List<SelectListItem>)habitaciones,
+     new { @class = "form-control", @required = true })
     </div>
 
     <div class="form-group">
         <label>Fecha ingreso</label>
-        @Html.TextBoxFor( model => model.fecha,
-       new  { @class="form-control", @required=true, @Value = Model.fecha.ToString("yyyy-MM-dd"), type = "date" })
+        @Html.TextBoxFor(model => model.fecha,
+    new { @class = "form-control", @required = true, @Value = Model.fecha.ToString("yyyy-MM-dd"), type = "date" })
     </div>
 
     <div class="form-group">
         <label>Fecha Salida</label>
-        @Html.TextBoxFor( model => model.fechaout,
-       new  { @class="form-control", @required=true, @Value = Model.fechaout.ToString("yyyy-MM-dd"), type = "date" })
+        @Html.TextBoxFor(model => model.fechaout,
+    new { @class = "form-control", @required = true, @Value = Model.fechaout.ToString("yyyy-MM-dd"), type = "date" })
     </div>
 
-    <div class="form-group">
-        <input class="btn btn-info" type="submit" value="Grabar" />
+    <div class="form-group text-center">
+        <input class="btn btn-primary" type="submit" value="Actualizar Reserva" />
     </div>
 }
 
 <p>
-    @Html.ActionLink("Volver", "Index")
+    @Html.ActionLink("Volver", "Index", new { }, new { @Class = "btn btn-info" })
 </p>

@@ -108,6 +108,7 @@ namespace BAL
                 entidad.fecha = obj.fecha;
                 entidad.numdias = generarNumdias(obj.fecha, obj.fechaout);
                 entidad.fechaout = obj.fechaout;
+
                 var habitacion = obtHabitacion(obj.idhabitacion);
                 entidad.total = generarTotal(habitacion.valordia, generarNumdias(obj.fecha, obj.fechaout));
                 entidad.estado = 0;

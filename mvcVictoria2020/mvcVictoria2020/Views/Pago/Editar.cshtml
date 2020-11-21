@@ -1,41 +1,66 @@
 ﻿@model Models.PagoModel
 @{
-
     ViewBag.Title = "Editar";
     ViewBag.TitlePag = "Editar Pago";
     Layout = "~/Views/Shared/_Plantilla.cshtml";
 
-    var reservas = new List<SelectListItem>();
-    reservas.Add(new SelectListItem() { Text = "Todas", Value = "" });
-    foreach (var item in ViewBag.Reserva)
-    {
-        reservas.Add(new SelectListItem() { Text = item.texto, Value = item.valor });
-    }
+
 }
 
 @using (Html.BeginForm(FormMethod.Post))
 {
 
+
     <div class="form-group">
-        <label>Cliente:</label>
-        @Html.DropDownListFor( model => model.idreserva,
-       (List<SelectListItem>)reservas,
-        new { @class="form-control", @required = true })
+        @Html.TextBoxFor( model => model.idpago,
+        new { @class="form-control", @readonly = true, type="hidden"})
     </div>
 
 
     <div class="form-group">
-        <label>Monto pago: </label>
+        <label>Cliente:</label>
+        @Html.TextBoxFor( model => model.NombreCliente,
+        new { @class="form-control", @readonly = true })
+    </div>
+
+    <div class="form-group">
+        <label>Habitacion:</label>
+        @Html.TextBoxFor( model => model.numhab,
+        new { @class="form-control", @readonly = true })
+    </div>
+
+    <div class="form-group">
+        <label>Fecha Ingreso:</label>
+        @Html.TextBoxFor( model => model.FechaInTxt,
+        new { @class="form-control", @readonly = true })
+    </div>
+
+    <div class="form-group">
+        <label>Fecha Salida:</label>
+        @Html.TextBoxFor( model => model.FechaOutTxt,
+        new { @class="form-control", @readonly = true })
+    </div>
+
+    <div class="form-group">
+        <label>Total a Pagar</label>
+        @Html.TextBoxFor( model => model.total,
+        new { @class="form-control", @readonly = true })
+    </div>
+
+
+
+    <div class="form-group">
+        <label>Monto pagado: </label>
         @Html.TextBoxFor( model => model.montopago,
        new  { @class="form-control", @required=true, type = "number", min="0"})
     </div>
 
 
-    <div class="form-group">
-        <input class="btn btn-info" type="submit" value="Grabar" />
+    <div class="form-group text-center">
+        <input class="btn btn-primary" type="submit" value="Actualizar Pago" />
     </div>
 }
 
 <p>
-    @Html.ActionLink("Volver", "Index")
+    @Html.ActionLink("Volver", "Index", new { }, new { @Class = "btn btn-info" })
 </p>

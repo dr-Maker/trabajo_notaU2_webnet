@@ -177,7 +177,6 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Plantilla.cshtml" />
     <Content Include="Views\Reserva\Index.cshtml" />
-    <Content Include="Views\Reserva\DropVistas.cshtml" />
     <Content Include="Views\Reserva\Crear.cshtml" />
     <Content Include="Views\Reserva\Editar.cshtml" />
     <Content Include="Views\Reserva\Borrar.cshtml" />

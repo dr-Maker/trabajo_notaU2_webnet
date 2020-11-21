@@ -67,13 +67,5 @@ namespace Controllers
         }
 
 
-
-        //*****************************
-        public ActionResult DropVistas()
-        {
-            ViewBag.Habitaciones = man.Habitaciones();
-            ViewBag.Clientes = man.Clientes();         
-            return RedirectToAction("Index");
-        }
     }
 }

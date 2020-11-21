@@ -1,16 +1,10 @@
 ﻿
-@{
-    ViewBag.Title = "Borrar";
-    Layout = "~/Views/Shared/_Plantilla.cshtml";
-}
-
-
 @model Models.ReservaModel
 
 @{
 
-    ViewBag.Title = "Editar";
-    ViewBag.TitlePag = "Editar Reserva";
+    ViewBag.Title = "Eliminar";
+    ViewBag.TitlePag = "Eliminar Reserva";
     Layout = "~/Views/Shared/_Plantilla.cshtml";
 
   
@@ -21,13 +15,13 @@
 
     <div class="form-group">
         <label>Cliente:</label>
-        @Html.TextBoxFor( model => model.idcliente,
+        @Html.TextBoxFor( model => model.NombreCliente,
         new { @class="form-control", @readonly = true })
     </div>
 
     <div class="form-group">
-        <label>Habitaciones:</label>
-        @Html.TextBoxFor( model => model.idhabitacion,
+        <label>Habitación:</label>
+        @Html.TextBoxFor( model => model.numhab,
         new { @class="form-control", @readonly = true })
     </div>
 
@@ -43,11 +37,11 @@
        new  { @class="form-control", @readonly = true, @Value = Model.fechaout.ToString("yyyy-MM-dd"), type = "date" })
     </div>
 
-    <div class="form-group">
-        <input class="btn btn-danger" type="submit" value="Borrar" />
+    <div class="form-group text-center">
+        <input class="btn btn-danger" type="submit" value="Borrar Reserva" />
     </div>
 }
 
 <p>
-    @Html.ActionLink("Volver", "Index")
+    @Html.ActionLink("Volver", "Index", new { }, new { @Class = "btn btn-info" })
 </p>

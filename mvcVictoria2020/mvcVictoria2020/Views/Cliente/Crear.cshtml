@@ -1,6 +1,7 @@
 ﻿@model Models.ClienteModel
 @{
     ViewBag.Title = "Crear";
+    ViewBag.TitlePag = "Crear Cliente";
     Layout = "~/Views/Shared/_Plantilla.cshtml";
 }
 
@@ -10,33 +11,33 @@
     <div class="form-group">
         <label>Nombre:</label>
         @Html.TextBoxFor( model => model.nombres,
-        new { @class="form-control", @required = true })
+        new { @class="form-control", @required = true, placeholder="Ingrese Nombre" })
     </div>
 
     <div class="form-group">
         <label>Apellido:</label>
         @Html.TextBoxFor( model => model.apellidos,
-        new { @class="form-control", @required = true })
+        new { @class="form-control", @required = true, placeholder = "Ingrese Apellido" })
     </div>
 
     <div class="form-group">
         <label>Correo Electronico:</label>
         @Html.TextBoxFor( model => model.email,
-        new { @class="form-control", @required = true, type="email" })
+        new { @class="form-control", @required = true, type="email" ,  placeholder = "Ingrese correo electronico " })
     </div>
 
     <div class="form-group">
         <label>Teléfono:</label>
         @Html.TextBoxFor( model => model.telefono,
-        new { @class="form-control", @required = true, type = "number" , min="0" })
+        new { @class="form-control", @required = true, type = "number" , min="0", placeholder = "Ingrese un teléfono" })
     </div>
 
-    <div class="form-group">
-        <input class="btn btn-info" type="submit" value="Grabar" />
+    <div class="form-group text-center">
+        <input class="btn btn-success" type="submit" value="Grabar Cliente" />
     </div>
 }
 
 <p>
-    @Html.ActionLink("Volver", "Index")
+    @Html.ActionLink("Volver", "Index", new { }, new { @Class = "btn btn-info" })
 </p>
 

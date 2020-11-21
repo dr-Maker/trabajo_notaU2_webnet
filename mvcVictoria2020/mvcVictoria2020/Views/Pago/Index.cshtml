@@ -6,21 +6,22 @@
 }
 
 <p>
-    @Html.ActionLink("Realizar Nuevo Pago", "Crear")
+    @Html.ActionLink("Realizar Nuevo Pago", "Crear", new { }, new { @Class = "btn btn-success" })
 </p>
 
 
 <table class="table table-bordered table-striped text-center">
     <thead>
         <tr>
-            <th>Fecha checkin</th>
-            <th>Fecha checkout</th>
-            <th>Num. día</th>
-            <th>Monto Total</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Dias</th>
+            <th>Total</th>
             <th>Monto Pagado</th>
             <th>Habitación</th>
             <th>Cliente</th>
-            <th>Accion</th>
+            <th>Editar</th>
+            <th>Borrar</th>
 
         </tr>
     </thead>
@@ -36,9 +37,12 @@
             <td>$ @item.montopago.ToString("N0")</td>
             <td>@item.NumValordia</td>
             <td>@item.NombreCliente</td>
+
             <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.idpago })
-                @Html.ActionLink("Eliminar ", "Borrar", new { id = item.idpago })
+                @Html.ActionLink("Editar", "Editar", new { id = item.idpago }, new { @Class = "btn btn-primary" })
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar ", "Borrar", new { id = item.idpago }, new { @Class = "btn btn-danger" })
             </td>
 
         </tr>

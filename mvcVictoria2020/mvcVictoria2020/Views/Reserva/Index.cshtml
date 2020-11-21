@@ -8,7 +8,7 @@
 }
 
 <p>
-    @Html.ActionLink("Ingresar Nueva Reserva","Crear")
+    @Html.ActionLink("Ingresar Nueva Reserva","Crear", new { } , new { @Class = "btn btn-success" })
 </p>
 
 <table class="table table-bordered table-striped text-center">
@@ -36,8 +36,8 @@
             <td>@item.NumValordia</td>
             <td>@item.NombreCliente</td>
             <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.idreserva })
-                @Html.ActionLink("Eliminar ", "Borrar", new { id = item.idreserva })
+                @Html.ActionLink("Editar", "Editar", new { id = item.idreserva }, new { @Class="btn btn-primary"})
+                @Html.ActionLink("Eliminar ", "Borrar", new { id = item.idreserva }, new { @Class = "btn btn-danger" })
             </td>
 
         </tr>

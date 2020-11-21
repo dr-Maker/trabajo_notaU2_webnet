@@ -7,7 +7,7 @@
 }
 
 <p>
-    @Html.ActionLink("Nuevo Cliente", "Crear")
+    @Html.ActionLink("Ingresar Nuevo Cliente", "Crear", new { }, new { @Class = "btn btn-success" })
 </p>
 
 <table class="table table-bordered table-striped text-center">
@@ -30,8 +30,8 @@
                 <td>@item.telefono</td>
 
                 <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.idcliente })
-                    @Html.ActionLink("Eliminar ", "Borrar", new { id = item.idcliente })
+                    @Html.ActionLink("Editar", "Editar", new { id = item.idcliente }, new { @Class = "btn btn-primary" })
+                    @Html.ActionLink("Eliminar ", "Borrar", new { id = item.idcliente }, new { @Class = "btn btn-danger" })
                 </td>
 
             </tr>

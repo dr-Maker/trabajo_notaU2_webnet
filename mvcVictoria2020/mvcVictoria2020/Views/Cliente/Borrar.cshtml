@@ -1,6 +1,6 @@
 ﻿@model Models.ClienteModel
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = "Borrar";
     ViewBag.TitlePag = "Borrar Cliente";
     Layout = "~/Views/Shared/_Plantilla.cshtml";
 }
@@ -32,11 +32,11 @@
         new { @class="form-control", @readonly = true, type = "number" , min="0" })
     </div>
 
-    <div class="form-group">
-        <input class="btn btn-danger" type="submit" value="Borrar" />
+    <div class="form-group text-center">
+        <input class="btn btn-danger" type="submit" value="Borrar Cliente" />
     </div>
 }
 
 <p>
-    @Html.ActionLink("Volver", "Index")
+    @Html.ActionLink("Volver", "Index", new { }, new { @Class = "btn btn-info" })
 </p>

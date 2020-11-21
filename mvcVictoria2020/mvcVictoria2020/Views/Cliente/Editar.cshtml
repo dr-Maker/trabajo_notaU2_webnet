@@ -7,7 +7,6 @@
 
 @using (Html.BeginForm(FormMethod.Post))
 {
-
     <div class="form-group">
         <label>Nombre:</label>
         @Html.TextBoxFor( model => model.nombres,
@@ -32,11 +31,11 @@
         new { @class="form-control", @required = true, type = "number" , min="0" })
     </div>
 
-    <div class="form-group">
-        <input class="btn btn-info" type="submit" value="Grabar" />
+    <div class="form-group text-center">
+        <input class="btn btn-primary" type="submit" value="Actualizar Cliente" />
     </div>
 }
 
 <p>
-    @Html.ActionLink("Volver", "Index")
+    @Html.ActionLink("Volver", "Index", new { }, new { @Class = "btn btn-info" })
 </p>

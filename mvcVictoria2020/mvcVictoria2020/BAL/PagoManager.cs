@@ -101,19 +101,19 @@ namespace BAL
             try
             {
                 var entidad = db.pago.Find(obj.idpago);
-                entidad.idreserva = obj.idreserva;
                 entidad.montopago = obj.montopago;
                 entidad.estado = 0;
                 db.pago.AddOrUpdate(entidad);
                 db.SaveChanges();
-
-
                 return entidad.idpago;
             }
             catch (Exception exe)
             {
                 return 0;
             }
+
+           
+
         }
 
         public int Borrar(int id)
